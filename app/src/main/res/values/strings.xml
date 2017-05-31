@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">SwitchLanguage</string>
+    <string name="language_default">en</string>
     <string name="action_switch_language">Language</string>
     <string name="welcome">Welcome</string>
     <string name="hello_world">Hello World!</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_swtich_language">Swtich Language</string>
+    <string-array name="pref_language_list_titles">
+        <item>English</item>
+        <item>简体中文</item>
+    </string-array>
+    <string-array name="pref_language_list_values">
+        <item>en</item>
+        <item>zh</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
 </resources>
