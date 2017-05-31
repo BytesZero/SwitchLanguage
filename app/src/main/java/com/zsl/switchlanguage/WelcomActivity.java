@@ -21,11 +21,12 @@ public class WelcomActivity extends AppCompatActivity {
                 if (msg.what == 1) {
                     Intent intent = new Intent(WelcomActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 return true;
             }
         });
 
-        mHandler.sendEmptyMessageDelayed(1,600);
+        mHandler.sendEmptyMessageDelayed(1, 600);
     }
 }
