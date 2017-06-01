@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SwitchLanguage</string>
-    <string name="language_default">en</string>
+    <string name="language_default" translatable="false">auto</string>
     <string name="action_switch_language">Language</string>
+    <string name="action_save">Save</string>
     <string name="welcome">Welcome</string>
     <string name="hello_world">Hello World!</string>
     <string name="title_activity_settings">Settings</string>

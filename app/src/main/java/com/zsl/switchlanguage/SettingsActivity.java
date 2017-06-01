@@ -15,6 +15,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -63,6 +66,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 } else if (stringValue.equals("en")) {
                     swtichLanguage(Locale.ENGLISH, preference.getContext());
                 } else {
+                    Log.d("Locale", "Locale.getDefault" + Locale.getDefault().getLanguage());
                     swtichLanguage(Locale.getDefault(), preference.getContext());
                 }
             }
@@ -70,19 +74,32 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     };
 
+    /**
+     * 切换语言
+     *
+     * @param locale  Locale
+     * @param context 上下文
+     */
     public static void swtichLanguage(Locale locale, Context context) {
         Resources res = context.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = locale;
         res.updateConfiguration(conf, dm);
-        restartActivity(context);
     }
 
+    /**
+     * 重启Activity
+     *
+     * @param context 重启Activity
+     */
     private static void restartActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
+        //杀掉进程
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
     /**
@@ -170,10 +187,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            inflater.inflate(R.menu.menu_setting, menu);
+        }
+
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
                 getFragmentManager().popBackStack();
+                return true;
+            } else if (id == R.id.action_save) {
+                restartActivity(getActivity());
                 return true;
             }
             return super.onOptionsItemSelected(item);

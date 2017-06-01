@@ -3,7 +3,6 @@
     <string name="app_name">切换语言</string>
     <string name="action_switch_language">语言</string>
     <string name="hello_world">你好世界！</string>
-    <string name="language_default">en</string>
     <string name="pref_header_data_sync">数据同步</string>
     <string name="pref_header_general">通用</string>
     <string name="pref_header_notifications">通知</string>
@@ -11,4 +10,5 @@
     <string name="title_activity_settings">设置</string>
     <string name="welcome">欢迎</string>
     <string name="language_auto">跟随系统</string>
+    <string name="action_save">保存</string>
 </resources>

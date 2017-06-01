@@ -27,8 +27,8 @@ public class MyApplication extends Application {
      * 设置语言
      */
     private void setLanguage() {
-        String currentLanguage = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .getString("language", "");
+        String currentLanguage = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getString("language", "auto");
         Locale locale;
         if ("auto".equals(currentLanguage)) {
             locale = Locale.getDefault();
