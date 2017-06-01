@@ -14,7 +14,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -82,10 +81,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     public static void swtichLanguage(Locale locale, Context context) {
         Resources res = context.getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
-        conf.locale = locale;
-        res.updateConfiguration(conf, dm);
+        conf.setLocale(locale);
+        context.createConfigurationContext(conf);
     }
 
     /**
