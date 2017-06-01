@@ -5,7 +5,12 @@
 - 语言切换
 
 ``` java
- public void swtichLanguage(Locale locale, Context context) {     Resources res = context.getResources();     Configuration conf = res.getConfiguration();     conf.setLocale(locale);     context.createConfigurationContext(conf); }
+public void swtichLanguage(Locale locale, Context context) {
+  Resources res = context.getResources();
+  Configuration conf = res.getConfiguration();
+  onf.setLocale(locale);
+  context.createConfigurationContext(conf);
+}
 ```
 
 > 切换中文
@@ -33,9 +38,12 @@ swtichLanguage(Locale.getDefault(), preference.getContext());
 
 ```java
 
-Intent intent = new Intent(context, MainActivity.class); intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); context.startActivity(intent);
- //杀掉进程
- android.os.Process.killProcess(android.os.Process.myPid()); System.exit(0);
+Intent intent = new Intent(context, MainActivity.class);
+intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+context.startActivity(intent);
+//杀掉进程
+android.os.Process.killProcess(android.os.Process.myPid());
+System.exit(0);
 ```
 
 
