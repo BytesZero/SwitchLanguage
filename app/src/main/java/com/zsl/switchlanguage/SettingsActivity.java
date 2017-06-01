@@ -40,7 +40,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-
+            CharSequence currentSummary = preference.getSummary();
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
@@ -57,22 +57,26 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 // simple string representation.
                 preference.setSummary(stringValue);
             }
-            if (stringValue.equalsIgnoreCase("zh")) {
-                swtichLanguage(Locale.CHINESE);
-            } else {
-                swtichLanguage(Locale.ENGLISH);
+            if (currentSummary != null) {
+                if (stringValue.equals("zh")) {
+                    swtichLanguage(Locale.CHINESE, preference.getContext());
+                } else if (stringValue.equals("en")) {
+                    swtichLanguage(Locale.ENGLISH, preference.getContext());
+                } else {
+                    swtichLanguage(Locale.getDefault(), preference.getContext());
+                }
             }
             return true;
         }
     };
 
-    public static void swtichLanguage(Locale locale) {
-        Resources resources = Resources.getSystem();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        Configuration config = resources.getConfiguration();
-        // 应用用户选择语言
-        config.locale = locale;
-        resources.updateConfiguration(config, dm);
+    public static void swtichLanguage(Locale locale, Context context) {
+        Resources res = context.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = locale;
+        res.updateConfiguration(conf, dm);
+        restartActivity(context);
     }
 
     private static void restartActivity(Context context) {
