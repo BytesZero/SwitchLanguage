@@ -13,6 +13,11 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_swtich_language">Swtich Language</string>
     <string name="language_auto">Auto</string>
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
     <string-array name="pref_language_list_titles">
         <item>@string/language_auto</item>
         <item>English</item>
@@ -23,9 +28,4 @@
         <item>en</item>
         <item>zh</item>
     </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
 </resources>
