@@ -1,5 +1,7 @@
 # 多语言切换demo
 
+[![Build Status](https://travis-ci.org/yy1300326388/SwitchLanguage.svg?branch=master)](https://travis-ci.org/yy1300326388/SwitchLanguage)
+
 ### 核心代码
 
 - 语言切换
