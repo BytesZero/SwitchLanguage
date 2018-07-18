@@ -18,14 +18,4 @@
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
 
-    <string-array name="pref_language_list_titles">
-        <item>@string/language_auto</item>
-        <item>English</item>
-        <item>简体中文</item>
-    </string-array>
-    <string-array name="pref_language_list_values">
-        <item>auto</item>
-        <item>en</item>
-        <item>zh</item>
-    </string-array>
 </resources>

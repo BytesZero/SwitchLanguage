@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -34,6 +33,7 @@ import java.util.Locale;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -60,45 +60,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 preference.setSummary(stringValue);
             }
             if (currentSummary != null) {
-                if (stringValue.equals("zh")) {
-                    swtichLanguage(Locale.CHINESE, preference.getContext());
-                } else if (stringValue.equals("en")) {
-                    swtichLanguage(Locale.ENGLISH, preference.getContext());
-                } else {
-                    Log.d("Locale", "Locale.getDefault" + Locale.getDefault().getLanguage());
-                    swtichLanguage(Locale.getDefault(), preference.getContext());
-                }
+                LocaleManager.switchLanguage(preference.getContext(), currentSummary.toString(), stringValue);
             }
             return true;
         }
     };
-
-    /**
-     * 切换语言
-     *
-     * @param locale  Locale
-     * @param context 上下文
-     */
-    public static void swtichLanguage(Locale locale, Context context) {
-        Resources res = context.getResources();
-        Configuration conf = res.getConfiguration();
-        conf.setLocale(locale);
-        context.createConfigurationContext(conf);
-    }
-
-    /**
-     * 重启Activity
-     *
-     * @param context 重启Activity
-     */
-    private static void restartActivity(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-        //杀掉进程
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(0);
-    }
 
     /**
      * Helper method to determine if the device has an extra-large screen. For
@@ -135,6 +101,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            actionBar.setTitle(R.string.title_activity_settings);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -196,7 +163,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 getFragmentManager().popBackStack();
                 return true;
             } else if (id == R.id.action_save) {
-                restartActivity(getActivity());
+                LocaleManager.restartActivity(getActivity(), MainActivity.class);
                 return true;
             }
             return super.onOptionsItemSelected(item);

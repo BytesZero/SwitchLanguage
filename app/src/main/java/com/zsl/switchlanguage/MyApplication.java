@@ -1,10 +1,13 @@
 package com.zsl.switchlanguage;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.webkit.WebView;
 
 import java.util.Locale;
 
@@ -18,27 +21,20 @@ import java.util.Locale;
 public class MyApplication extends Application {
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        setLanguage();
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleManager.setLocale(base));
     }
 
-    /**
-     * 设置语言
-     */
-    private void setLanguage() {
-        String currentLanguage = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
-                .getString("language", "auto");
-        Locale locale;
-        if ("auto".equals(currentLanguage)) {
-            locale = Locale.getDefault();
-        } else {
-            locale = new Locale(currentLanguage);
-        }
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = locale;
-        res.updateConfiguration(conf, dm);
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //处理Android7（N）WebView 导致应用内语言失效的问题
+        LocaleManager.destoryWebView(this);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        LocaleManager.setLocale(this);
     }
 }
