@@ -1,4 +1,4 @@
-# 多语言切换demo
+# Android 多语言切换及适配指南
 
 [![Build Status](https://travis-ci.org/yy1300326388/SwitchLanguage.svg?branch=master)](https://travis-ci.org/yy1300326388/SwitchLanguage)
 

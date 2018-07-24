@@ -14,7 +14,7 @@ import java.util.Locale;
 
 /**
  * desc: 语言的基础类
- * project name:flowercare_international
+ * project name:LocaleManager
  * author:zsl
  * version 1.0.0
  */
