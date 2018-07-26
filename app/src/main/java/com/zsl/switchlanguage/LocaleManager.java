@@ -17,6 +17,7 @@ import java.util.Locale;
  * project name:LocaleManager
  * author:zsl
  * version 1.0.0
+ * 使用方法参考：https://github.com/yy1300326388/SwitchLanguage
  */
 
 public class LocaleManager {
